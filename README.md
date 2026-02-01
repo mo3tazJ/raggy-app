@@ -1,2 +1,0 @@
-# raggy-app
-Rag Application
