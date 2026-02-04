@@ -1,3 +1,11 @@
+
+
+# Rest Test
+.rest_test - Local
+.rest_test - Local/
+.rest_test - Remote
+.rest_test - Remote/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
