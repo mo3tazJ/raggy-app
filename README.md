@@ -21,6 +21,7 @@ $ conda activate raggy
 ```bash
 export PS1="\[\033[01;32m\]\u@\h:\w\n\[\033[00m\]\$ "
 ```
+You need to re-activate your env
 
 ## Installation
 
@@ -33,6 +34,19 @@ $ pip install -r requirements.txt
 $ cp .env.example .env
 ```
 Set your environment variables in the .env file. Like OPENAI_API_KEY value.
+
+## Run Docker Compose Services
+
+```bash
+$ cd docker
+$ cp .env.example .env
+```
+*important:* DO not forget to update .env with your credentials
+
+```bash
+sudo docker compose up -d
+```
+
 
 ## Run the FastAPI server
 use the following command to run the server with these settings (reload enabled, accept ip's, and port 5000)
