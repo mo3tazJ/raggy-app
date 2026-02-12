@@ -9,6 +9,7 @@ from helpers.config import get_settings
 # 1. Define shared resources (e.g., db connections)
 app_state = {}
 
+
 # 2. Define the lifespan context manager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,14 +18,14 @@ async def lifespan(app: FastAPI):
 
     app_state["db"] = "Connected"
     settings = get_settings()
-    app.mongo_conn = AsyncIOMotorClient(settings.MONGODB_URL) # type: ignore
-    app.db_client = app.mongo_conn[settings.MONGODB_DATABASE] # type: ignore
+    app.mongo_conn = AsyncIOMotorClient(settings.MONGODB_URL)  # type: ignore
+    app.db_client = app.mongo_conn[settings.MONGODB_DATABASE]  # type: ignore
 
-    yield # Control is yielded to FastAPI to start the app
-    
+    yield  # Control is yielded to FastAPI to start the app
+
     # --- Shutdown Logic ---
     print("Shutting down... cleaning up resources")
-    app.mongo_conn.close() # type: ignore
+    app.mongo_conn.close()  # type: ignore
     app_state.clear()
 
 
