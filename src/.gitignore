@@ -6,6 +6,8 @@
 .rest_test - Remote
 .rest_test - Remote/
 
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
