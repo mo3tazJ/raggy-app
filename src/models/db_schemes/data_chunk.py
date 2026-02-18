@@ -14,7 +14,7 @@ class DataChunk(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     # class config:
     #     arbitrary_types_allowed=True
-    
+
     @classmethod
     def get_indexes(cls):
         return [
@@ -26,3 +26,8 @@ class DataChunk(BaseModel):
                 "unique": False
             }
         ]
+
+
+class RetrievedDocument(BaseModel):
+    text: str
+    score: float
