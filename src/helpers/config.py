@@ -5,7 +5,6 @@ class Settings(BaseSettings):
 
     APP_NAME: str
     APP_VERSION: str
-    OPENAI_API_KEY: str
 
     FILE_ALLOWED_TYPES: list
     FILE_MAX_SIZE: int
@@ -28,6 +27,10 @@ class Settings(BaseSettings):
     INPUT_DEFAULT_MAX_CHARACTERS: int = None  # type: ignore
     GENERATION_DEFAULT_MAX_TOKENS: int = None  # type: ignore
     GENERATION_DEFAULT_TEMPERATURE: float = None  # type: ignore
+
+    VECTOR_DB_BACKEND: str
+    VECTOR_DB_PATH: str
+    VECTOR_DB_DISTANCE_METHOD: str = None  # type: ignore
 
     model_config = SettingsConfigDict(env_file=".env")
 
