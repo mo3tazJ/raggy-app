@@ -6,6 +6,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from helpers.config import get_settings
 from stores.llm.LLMProviderFactory import LLMProviderFactory
 from stores.vectordb.VectorDBProviderFactory import VectorDBProviderFactory
+from stores.llm.templates.template_parser import TemplateParser
 
 
 # 1. Define shared resources (e.g., db connections)
@@ -50,9 +51,17 @@ async def lifespan(app: FastAPI):
     # Create and configure vectordb client
     vectordb_client = vectordb_provider_factory.create(
         provider=settings.VECTOR_DB_BACKEND)
-    app.vectordb_client = vectordb_client
+    app.vectordb_client = vectordb_client  # type: ignore
     app_state["vectordb_client"] = vectordb_client
     app.vectordb_client.connect()  # type: ignore
+
+    # Initialize Template Parser
+    template_parser = TemplateParser(
+        language=settings.PRIMARY_LANG,
+        default_language=settings.DEFAULT_LANG
+    )
+    app_state["template_parser"] = template_parser
+    app.template_parser = template_parser  # type: ignore
 
     yield  # Control is yielded to FastAPI to start the app
 
